@@ -31,9 +31,8 @@ router.get('/products/:idProduct', async (req, res)=>{
     }
 })
 
-router.post('/products/:idProduct', async(req, res)=>{
+router.post('/products', async(req, res)=>{
     try{
-        const id = req.params.idProduct
         const newProduct = req.body
         const msg = await Manager.addProduct(newProduct)
         res.json({message: `${msg}`})
@@ -43,8 +42,9 @@ router.post('/products/:idProduct', async(req, res)=>{
     }
 })
 
-router.put('/products/', async(req, res)=>{
+router.put('/products/:idProduct', async(req, res)=>{
     try{
+        const id = req.params.idProduct
         const productUpdated = req.body
         const msg = await Manager.updateProduct(productUpdated)
         res.json({message: `${msg}`})
